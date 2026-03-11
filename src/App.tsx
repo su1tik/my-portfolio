@@ -257,33 +257,47 @@ const App = () => {
 
       {/* 6. Footer */}
       <footer className="py-10 text-center font-mono text-slate-500">
-        {/* Этот блок покажется ТОЛЬКО на мобильных (lg:hidden) */}
-        <div className="flex lg:hidden justify-center gap-6 mb-6">
+        {/* Ряд иконок для мобильных (виден только на экранах меньше lg) */}
+        <div className="flex lg:hidden justify-center gap-8 mb-8">
           <a
             href="https://github.com/your-username"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-indigo-500 transition-colors">
-            <Github size={20} />
+            <Github size={22} />
           </a>
           <a
             href="https://linkedin.com/in/your-username"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-indigo-500 transition-colors">
-            <Linkedin size={20} />
+            <Linkedin size={22} />
           </a>
           <a
             href="https://t.me/your_telegram"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hover:text-indigo-500 transition-colors">
-            <Send size={20} />
+            <Send size={22} />
+          </a>
+          {/* ДОБАВИЛИ ИНСТАГРАМ */}
+          <a
+            href="https://instagram.com/your-username"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-500 transition-colors">
+            <Instagram size={22} />
           </a>
           <a
             href="mailto:contact@sula.kz"
             className="hover:text-indigo-500 transition-colors">
-            <Globe size={20} />
+            <Globe size={22} />
           </a>
         </div>
 
-        <p className="text-[10px] uppercase tracking-[0.3em]">
-          Designed & Built by Sultan{" "}
-          <span className="mx-2 text-indigo-500">|</span> 2026
+        <p className="text-[10px] uppercase tracking-[0.3em] px-6 leading-loose">
+          Разработано и построено <span className="text-white">Sultan</span>{" "}
+          <span className="mx-2 text-indigo-500">|</span> 2025
         </p>
       </footer>
     </div>
