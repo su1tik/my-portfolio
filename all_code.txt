@@ -1,0 +1,265 @@
+
+
+--- FILE: package.json ---
+{
+  "name": "my-portfolio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@tailwindcss/vite": "^4.2.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.27",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vite": "^7.3.1"
+  }
+}
+
+
+--- FILE: vite.config.ts ---
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite"; // 1. Импортируй это
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(), // 2. Добавь это в список плагинов
+  ],
+});
+
+
+--- FILE: index.html ---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my-portfolio</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
+
+--- FILE: src/App.css ---
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+--- FILE: src/main.tsx ---
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.tsx";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/700.css";
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+);
+
+
+--- FILE: src/App.tsx ---
+import React from "react";
+import { Bot, Zap, Globe, Github, Linkedin, ArrowUpRight } from "lucide-react";
+
+const App = () => {
+  return (
+    <div className="min-h-screen bg-[#050505] text-slate-300 selection:bg-blue-500/30 font-sans antialiased">
+      {/* Сетка на фоне (Linear Style) */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+
+      {/* Header */}
+      <nav className="relative z-10 flex justify-between items-center max-w-6xl mx-auto px-6 py-10">
+        <div className="text-white font-medium tracking-tighter text-lg">
+          KZ // DEV
+        </div>
+        <div className="hidden md:flex gap-8 text-sm font-light">
+          <a href="#work" className="hover:text-white transition-colors">
+            Work
+          </a>
+          <a href="#tech" className="hover:text-white transition-colors">
+            Stack
+          </a>
+          <a
+            href="mailto:your@email.com"
+            className="hover:text-white transition-colors">
+            Contact
+          </a>
+        </div>
+      </nav>
+
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-20">
+        {/* Hero Section */}
+        <div className="max-w-3xl">
+          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8">
+            Solving business problems through{" "}
+            <span className="text-blue-500">intelligent</span> code.
+          </h1>
+          <p className="text-lg md:text-xl leading-relaxed mb-10 text-slate-400">
+            Frontend-разработчик с фокусом на автоматизацию и интеграцию AI.
+            Помогаю компаниям внедрять сложные технологии через простые и
+            эстетичные интерфейсы.
+          </p>
+          <div className="flex gap-4">
+            <button className="bg-white text-black px-8 py-4 rounded-full text-sm font-semibold hover:bg-slate-200 transition-all">
+              Посмотреть проекты
+            </button>
+          </div>
+        </div>
+
+        {/* Impact Section */}
+        <div className="grid md:grid-cols-3 gap-1px bg-white/10 mt-32 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm">
+          <div className="bg-black/40 p-10">
+            <Zap className="text-blue-500 mb-4" size={28} />
+            <h3 className="text-white font-medium mb-2">Automation</h3>
+            <p className="text-sm text-slate-500">
+              Сокращаю операционные расходы за счет автоматизации UI-логики.
+            </p>
+          </div>
+          <div className="bg-black/40 p-10">
+            <Bot className="text-blue-500 mb-4" size={28} />
+            <h3 className="text-white font-medium mb-2">AI Integration</h3>
+            <p className="text-sm text-slate-500">
+              Внедрение LLM и нейросетей в существующие веб-продукты.
+            </p>
+          </div>
+          <div className="bg-black/40 p-10">
+            <Globe className="text-blue-500 mb-4" size={28} />
+            <h3 className="text-white font-medium mb-2">Scalability</h3>
+            <p className="text-sm text-slate-500">
+              Архитектура, готовая к нагрузкам Arch-уровня и выше.
+            </p>
+          </div>
+        </div>
+
+        {/* Project Section */}
+        <section id="work" className="mt-32 pb-32">
+          <h2 className="text-2xl font-bold text-white mb-12">
+            Featured Project
+          </h2>
+
+          <div className="group relative">
+            {/* Glassmorphism Card */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+            <div className="relative bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 md:p-12 overflow-hidden">
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <div className="flex items-center gap-2 mb-6">
+                    <span className="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-xs font-medium uppercase tracking-wider">
+                      AI Case Study
+                    </span>
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    Neural Translator Pro
+                  </h3>
+                  <p className="text-slate-400 mb-6 leading-relaxed">
+                    Система корпоративного перевода с использованием DeepL и
+                    GPT-4 API. Реализовал сложную логику «памяти перевода», что
+                    позволило компании экономить $2000/мес на услугах
+                    переводчиков.
+                  </p>
+                  <ul className="flex flex-wrap gap-3 mb-8">
+                    {["React", "TypeScript", "Node.js", "OpenAI API"].map(
+                      (tech) => (
+                        <li
+                          key={tech}
+                          className="text-[10px] font-mono border border-white/10 px-2 py-1 rounded text-slate-500">
+                          {tech}
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
+                    Детальный кейс <ArrowUpRight size={16} />
+                  </a>
+                </div>
+                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl border border-white/5 flex items-center justify-center text-slate-700 font-mono text-sm">
+                  {/* Сюда можно вставить скриншот проекта */}[ UI Visualization
+                  ]
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+};
+
+export default App;
+
+
+--- FILE: src/index.css ---
+@import "tailwindcss";
