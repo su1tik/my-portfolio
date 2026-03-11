@@ -255,9 +255,36 @@ const App = () => {
         </section>
       </main>
 
-      <footer className="py-12 text-center font-mono text-[10px] text-slate-600 uppercase tracking-[0.3em]">
-        Designed & Built by Sultan{" "}
-        <span className="mx-2 text-indigo-500">|</span> 2026
+      {/* 6. Footer */}
+      <footer className="py-10 text-center font-mono text-slate-500">
+        {/* Этот блок покажется ТОЛЬКО на мобильных (lg:hidden) */}
+        <div className="flex lg:hidden justify-center gap-6 mb-6">
+          <a
+            href="https://github.com/your-username"
+            className="hover:text-indigo-500 transition-colors">
+            <Github size={20} />
+          </a>
+          <a
+            href="https://linkedin.com/in/your-username"
+            className="hover:text-indigo-500 transition-colors">
+            <Linkedin size={20} />
+          </a>
+          <a
+            href="https://t.me/your_telegram"
+            className="hover:text-indigo-500 transition-colors">
+            <Send size={20} />
+          </a>
+          <a
+            href="mailto:contact@sula.kz"
+            className="hover:text-indigo-500 transition-colors">
+            <Globe size={20} />
+          </a>
+        </div>
+
+        <p className="text-[10px] uppercase tracking-[0.3em]">
+          Designed & Built by Sultan{" "}
+          <span className="mx-2 text-indigo-500">|</span> 2026
+        </p>
       </footer>
     </div>
   );
