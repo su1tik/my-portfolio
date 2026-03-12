@@ -270,36 +270,35 @@ const App = () => {
         {/* Ряд иконок для мобильных (виден только на экранах меньше lg) */}
         <div className="flex lg:hidden justify-center gap-8 mb-8">
           <a
-            href="https://github.com/your-username"
+            href="https://github.com/su1tik"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-indigo-500 transition-colors">
             <Github size={22} />
           </a>
           <a
-            href="https://linkedin.com/in/your-username"
+            href="https://www.linkedin.com/in/sultan-auken-034316342/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-indigo-500 transition-colors">
             <Linkedin size={22} />
           </a>
           <a
-            href="https://t.me/your_telegram"
+            href="http://t.me/suullaaaa"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-indigo-500 transition-colors">
             <Send size={22} />
           </a>
-          {/* ДОБАВИЛИ ИНСТАГРАМ */}
           <a
-            href="https://instagram.com/your-username"
+            href="https://www.instagram.com/sula.profile/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-indigo-500 transition-colors">
             <Instagram size={22} />
           </a>
           <a
-            href="mailto:contact@sula.kz"
+            href="mailto:su1tangithub@gmail.com"
             className="hover:text-indigo-500 transition-colors">
             <Globe size={22} />
           </a>
