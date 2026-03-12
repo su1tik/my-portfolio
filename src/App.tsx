@@ -35,6 +35,41 @@ const EXPERIENCE = [
   },
 ];
 
+const PROJECTS = [
+  {
+    title: "KAMI AI: Интеллектуальная система локализации для HoReCa",
+    category: "AI / Business Integration",
+    description:
+      "Высокопроизводительный сервис на базе AI для мгновенного перевода ресторанных меню на 15+ языков. Система учитывает профессиональный кулинарный контекст и использует кастомные глоссарии для обеспечения 100% точности терминологии.",
+    tags: [
+      "React",
+      "Vite",
+      "CSS3",
+      "LocalStorage API",
+      "Node.js",
+      "Google Gemini API",
+      "XLSX",
+      "Mammoth.js",
+    ],
+    link: "https://ai-menu-translator.vercel.app/",
+  },
+  {
+    title: "WEB-terminal-linux: Интерактивная консольная среда разработчика",
+    category: "Creative portfolio / Interactive UI",
+    description:
+      "Интерактивное веб-приложение в стиле терминала Arch Linux, предназначенное для навигации по портфолио через командную строку. Проект включает в себя полноценную виртуальную файловую систему с возможностью создания и удаления файлов, поддержку кастомных команд (neofetch, pacman, sudo) и систему автодополнения (Tab completion). Состояние системы и история команд синхронизируются через LocalStorage для сохранения сессии пользователя.",
+    tags: [
+      "React 19",
+      "TypeScript",
+      "Zustand",
+      "Vite",
+      "SCSS",
+      "LocalStorage API",
+    ],
+    link: "https://web-terminal-linux.vercel.app/",
+  },
+];
+
 const App = () => {
   const techStack = [
     "React",
@@ -200,23 +235,20 @@ const App = () => {
             </h2>
             <div className="h-[1px] w-full bg-slate-800" />
           </div>
-          <ProjectCard
-            title="KAMI AI: Интеллектуальная система локализации для HoReCa"
-            category="AI / Business Integration"
-            description="Высокопроизводительный сервис на базе AI для мгновенного перевода ресторанных меню на 15+ языков. <br>
-            Система учитывает профессиональный кулинарный контекст и использует кастомные глоссарии для обеспечения 100% точности терминологии."
-            tags={[
-              "React",
-              "Vite",
-              "CSS3",
-              "LocalStorage API",
-              "Node.js",
-              "Google Gemini API",
-              "XLSX",
-              "Mammoth.js",
-            ]}
-            link="https://ai-menu-translator.vercel.app/"
-          />
+
+          {/* Контейнер для списка проектов */}
+          <div className="flex flex-col gap-16 md:gap-24">
+            {PROJECTS.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}>
+                <ProjectCard {...project} />
+              </motion.div>
+            ))}
+          </div>
         </section>
 
         {/* 03. EXPERIENCE */}
@@ -306,7 +338,7 @@ const App = () => {
 
         <p className="text-[10px] uppercase tracking-[0.3em] px-6 leading-loose">
           Разработано и построено <span className="text-white">Sultan</span>{" "}
-          <span className="mx-2 text-indigo-500">|</span> 2025
+          <span className="mx-2 text-indigo-500">|</span> 2026
         </p>
       </footer>
     </div>

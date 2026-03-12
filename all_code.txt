@@ -8,13 +8,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@tailwindcss/vite": "^4.2.1",
+    "framer-motion": "^12.35.2",
+    "lucide-react": "^0.577.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -57,60 +59,15 @@ export default defineConfig({
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/public/img/img.icons8.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-portfolio</title>
+    <title>Sultan | AI Frontend Engineer</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
-
---- FILE: src/App.css ---
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
 
 
 --- FILE: src/main.tsx ---
@@ -129,131 +86,317 @@ createRoot(document.getElementById("root")!).render(
 
 
 --- FILE: src/App.tsx ---
-import React from "react";
-import { Bot, Zap, Globe, Github, Linkedin, ArrowUpRight } from "lucide-react";
+import {
+  Bot,
+  Zap,
+  Globe,
+  Github,
+  Linkedin,
+  Instagram,
+  Send,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import ProjectCard from "./components/ProjectCard";
+import SocialSidebar from "./components/SocialSidebar";
+import EmailSidebar from "./components/EmailSidebar";
+
+const EXPERIENCE = [
+  {
+    company: "AI Startup / Freelance",
+    role: "Middle Frontend Developer",
+    period: "2023 — Наст. время",
+    tasks: [
+      "Разработка интерфейсов для управления LLM-агентами на React и TypeScript.",
+      "Оптимизация производительности приложений в Linux-среде (Arch Linux).",
+      "Интеграция API нейросетей (OpenAI, DeepL) для автоматизации бизнес-логики.",
+    ],
+  },
+  {
+    company: "Tech Development KZ",
+    role: "Frontend Developer",
+    period: "2021 — 2023",
+    tasks: [
+      "Создание масштабируемых UI-компонентов для ERP-систем.",
+      "Настройка CI/CD процессов и автоматизация сборки фронтенда.",
+      "Рефакторинг кода и переход на современный стек (Vite + Tailwind).",
+    ],
+  },
+];
 
 const App = () => {
-  return (
-    <div className="min-h-screen bg-[#050505] text-slate-300 selection:bg-blue-500/30 font-sans antialiased">
-      {/* Сетка на фоне (Linear Style) */}
-      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+  const techStack = [
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Tailwind CSS",
+    "OpenAI API",
+    "PostgreSQL",
+  ];
 
-      {/* Header */}
-      <nav className="relative z-10 flex justify-between items-center max-w-6xl mx-auto px-6 py-10">
-        <div className="text-white font-medium tracking-tighter text-lg">
-          KZ // DEV
+  return (
+    <div className="min-h-screen bg-[#050505] text-slate-300 selection:bg-indigo-500/30 font-sans antialiased">
+      <SocialSidebar />
+      <EmailSidebar />
+
+      {/* Фоновая сетка */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
+      {/* Навигация: Теперь фиолетовая */}
+      <nav className="relative z-10 flex justify-between items-center max-w-6xl mx-auto px-6 py-8">
+        <div className="text-white font-bold tracking-tighter text-lg border-2 border-indigo-500 px-2 py-1">
+          S.
         </div>
-        <div className="hidden md:flex gap-8 text-sm font-light">
-          <a href="#work" className="hover:text-white transition-colors">
-            Work
-          </a>
-          <a href="#tech" className="hover:text-white transition-colors">
-            Stack
+        <div className="flex items-center gap-6 md:gap-10 text-xs font-mono tracking-widest uppercase text-slate-500">
+          <a
+            href="#about"
+            className="hover:text-indigo-400 transition-colors hidden sm:block">
+            <span className="text-indigo-500">01.</span> About
           </a>
           <a
-            href="mailto:your@email.com"
-            className="hover:text-white transition-colors">
-            Contact
+            href="#work"
+            className="hover:text-indigo-400 transition-colors hidden sm:block">
+            <span className="text-indigo-500">02.</span> Work
+          </a>
+          <a
+            href="#experience"
+            className="hover:text-indigo-400 transition-colors hidden sm:block">
+            <span className="text-indigo-500">03.</span> Experience
+          </a>
+          <a
+            href="https://drive.google.com/file/d/1WAZdd5zLGU7PHSDSctcEB740DwuCrAuo/view?usp=sharing"
+            target="_blank"
+            className="border border-indigo-500 px-4 py-2 text-indigo-400 hover:bg-indigo-500/10 transition-all rounded leading-none flex items-center h-full">
+            Resume
           </a>
         </div>
       </nav>
 
-      <main className="relative z-10 max-w-6xl mx-auto px-6 pt-20">
-        {/* Hero Section */}
-        <div className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-8">
-            Solving business problems through{" "}
-            <span className="text-blue-500">intelligent</span> code.
-          </h1>
-          <p className="text-lg md:text-xl leading-relaxed mb-10 text-slate-400">
-            Frontend-разработчик с фокусом на автоматизацию и интеграцию AI.
-            Помогаю компаниям внедрять сложные технологии через простые и
-            эстетичные интерфейсы.
-          </p>
-          <div className="flex gap-4">
-            <button className="bg-white text-black px-8 py-4 rounded-full text-sm font-semibold hover:bg-slate-200 transition-all">
+      <main className="relative z-10 max-w-4xl mx-auto px-6 md:px-12 pt-10 md:pt-20">
+        {/* HERO SECTION */}
+        <section className="min-h-[80vh] flex flex-col justify-center mb-20">
+          <motion.p
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="font-mono text-indigo-500 mb-5 text-sm uppercase tracking-[0.3em]">
+            Привет, меня зовут
+          </motion.p>
+          <motion.h1
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-bold text-white mb-4">
+            Sultan.
+          </motion.h1>
+          <motion.h2
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl md:text-6xl font-bold text-slate-600 leading-tight mb-8">
+            Я создаю интеллект для веба.
+          </motion.h2>
+          <motion.p
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="max-w-xl text-lg leading-relaxed mb-12">
+            Frontend-разработчик из Казахстана. Специализируюсь на автоматизации
+            и интеграции AI. Превращаю сложные бизнес-проблемы в элегантные
+            технические решения.
+          </motion.p>
+          <motion.div
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}>
+            <a
+              href="#work"
+              className="border-2 border-indigo-500 text-indigo-400 px-8 py-4 rounded font-mono hover:bg-indigo-500/10 transition-all inline-block">
               Посмотреть проекты
-            </button>
-          </div>
-        </div>
+            </a>
+          </motion.div>
+        </section>
 
-        {/* Impact Section */}
-        <div className="grid md:grid-cols-3 gap-1px bg-white/10 mt-32 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-sm">
-          <div className="bg-black/40 p-10">
-            <Zap className="text-blue-500 mb-4" size={28} />
-            <h3 className="text-white font-medium mb-2">Automation</h3>
-            <p className="text-sm text-slate-500">
-              Сокращаю операционные расходы за счет автоматизации UI-логики.
-            </p>
+        {/* 01. ABOUT ME (С цветной аватаркой) */}
+        <section id="about" className="mb-48 scroll-mt-24">
+          <div className="flex items-center gap-4 mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
+              <span className="text-indigo-500 font-mono text-xl mr-2">
+                01.
+              </span>{" "}
+              About Me
+            </h2>
+            <div className="h-[1px] w-full bg-slate-800" />
           </div>
-          <div className="bg-black/40 p-10">
-            <Bot className="text-blue-500 mb-4" size={28} />
-            <h3 className="text-white font-medium mb-2">AI Integration</h3>
-            <p className="text-sm text-slate-500">
-              Внедрение LLM и нейросетей в существующие веб-продукты.
-            </p>
-          </div>
-          <div className="bg-black/40 p-10">
-            <Globe className="text-blue-500 mb-4" size={28} />
-            <h3 className="text-white font-medium mb-2">Scalability</h3>
-            <p className="text-sm text-slate-500">
-              Архитектура, готовая к нагрузкам Arch-уровня и выше.
-            </p>
-          </div>
-        </div>
+          <div className="grid md:grid-cols-3 gap-12 items-center">
+            <div className="md:col-span-2 space-y-4 text-slate-400">
+              <p>
+                Я разработчик, который верит в мощь{" "}
+                <span className="text-indigo-400">автоматизации</span>. Мой опыт
+                работы на{" "}
+                <span className="text-white italic font-medium">
+                  Arch Linux
+                </span>{" "}
+                сформировал инженерный подход: я люблю знать, как всё работает
+                под капотом.
+              </p>
+              <p>
+                Сегодня я помогаю компаниям внедрять нейросети, чтобы сделать
+                продукты умнее и быстрее.
+              </p>
+              <ul className="grid grid-cols-2 gap-2 font-mono text-xs">
+                {techStack.map((t) => (
+                  <li key={t} className="flex items-center gap-2">
+                    <span className="text-indigo-500">▹</span> {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        {/* Project Section */}
-        <section id="work" className="mt-32 pb-32">
-          <h2 className="text-2xl font-bold text-white mb-12">
-            Featured Project
-          </h2>
+            {/* ЦВЕТНАЯ АВАТАРКА БЕЗ GRAYSCALE */}
+            <div className="flex justify-center">
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="relative group">
+                {/* Фиолетовое свечение */}
+                <div className="absolute -inset-1 bg-indigo-500/30 rounded-full blur-xl opacity-70 group-hover:bg-indigo-500/50 transition-all duration-700" />
 
-          <div className="group relative">
-            {/* Glassmorphism Card */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-            <div className="relative bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 md:p-12 overflow-hidden">
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="flex items-center gap-2 mb-6">
-                    <span className="px-3 py-1 bg-blue-500/10 text-blue-500 rounded-full text-xs font-medium uppercase tracking-wider">
-                      AI Case Study
-                    </span>
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-4">
-                    Neural Translator Pro
-                  </h3>
-                  <p className="text-slate-400 mb-6 leading-relaxed">
-                    Система корпоративного перевода с использованием DeepL и
-                    GPT-4 API. Реализовал сложную логику «памяти перевода», что
-                    позволило компании экономить $2000/мес на услугах
-                    переводчиков.
-                  </p>
-                  <ul className="flex flex-wrap gap-3 mb-8">
-                    {["React", "TypeScript", "Node.js", "OpenAI API"].map(
-                      (tech) => (
-                        <li
-                          key={tech}
-                          className="text-[10px] font-mono border border-white/10 px-2 py-1 rounded text-slate-500">
-                          {tech}
-                        </li>
-                      ),
-                    )}
-                  </ul>
-                  <a
-                    href="#"
-                    className="inline-flex items-center gap-2 text-white hover:text-blue-400 transition-colors">
-                    Детальный кейс <ArrowUpRight size={16} />
-                  </a>
+                <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full border border-indigo-500/30 p-2 bg-black/40 backdrop-blur-sm shadow-2xl overflow-hidden">
+                  {/* Удалены grayscale и hover-фильтры */}
+                  <img
+                    src="/img/photo_5298814124059988874_x.jpg"
+                    alt="Me"
+                    className="w-full h-full rounded-full object-cover shadow-inner transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
-                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl border border-white/5 flex items-center justify-center text-slate-700 font-mono text-sm">
-                  {/* Сюда можно вставить скриншот проекта */}[ UI Visualization
-                  ]
-                </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
+
+        {/* 02. WORK */}
+        <section id="work" className="mb-48 scroll-mt-24">
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
+              <span className="text-indigo-500 font-mono text-xl mr-2">
+                02.
+              </span>{" "}
+              Selected Work
+            </h2>
+            <div className="h-[1px] w-full bg-slate-800" />
+          </div>
+          <ProjectCard
+            title="KAMI AI: Интеллектуальная система локализации для HoReCa"
+            category="AI / Business Integration"
+            description="Высокопроизводительный сервис на базе AI для мгновенного перевода ресторанных меню на 15+ языков.
+            Система учитывает профессиональный кулинарный контекст и использует кастомные глоссарии для обеспечения 100% точности терминологии."
+            tags={[
+              "React",
+              "Vite",
+              "CSS3",
+              "LocalStorage API",
+              "Node.js",
+              "Google Gemini API",
+              "XLSX",
+              "Mammoth.js",
+            ]}
+            link="https://ai-menu-translator.vercel.app/"
+          />
+        </section>
+
+        {/* 03. EXPERIENCE */}
+        <section id="experience" className="mb-48 scroll-mt-24">
+          <div className="flex items-center gap-4 mb-12">
+            <h2 className="text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
+              <span className="text-indigo-500 font-mono text-xl mr-2">
+                03.
+              </span>{" "}
+              Experience
+            </h2>
+            <div className="h-[1px] w-full bg-slate-800" />
+          </div>
+
+          <div className="space-y-12">
+            {EXPERIENCE.map((job, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group">
+                <h3 className="text-xl font-bold text-white mb-1">
+                  {job.role}{" "}
+                  <span className="text-indigo-400 font-medium">
+                    @ {job.company}
+                  </span>
+                </h3>
+                <p className="font-mono text-xs text-slate-600 mb-4 uppercase tracking-[0.2em]">
+                  {job.period}
+                </p>
+                <ul className="space-y-2">
+                  {job.tasks.map((task, j) => (
+                    <li
+                      key={j}
+                      className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
+                      <span className="text-indigo-500 mt-1">▹</span>
+                      {task}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </section>
       </main>
+
+      {/* 6. Footer */}
+      <footer className="py-10 text-center font-mono text-slate-500">
+        {/* Ряд иконок для мобильных (виден только на экранах меньше lg) */}
+        <div className="flex lg:hidden justify-center gap-8 mb-8">
+          <a
+            href="https://github.com/su1tik"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-500 transition-colors">
+            <Github size={22} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/sultan-auken-034316342/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-500 transition-colors">
+            <Linkedin size={22} />
+          </a>
+          <a
+            href="http://t.me/suullaaaa"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-500 transition-colors">
+            <Send size={22} />
+          </a>
+          <a
+            href="https://www.instagram.com/sula.profile/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-500 transition-colors">
+            <Instagram size={22} />
+          </a>
+          <a
+            href="mailto:su1tangithub@gmail.com"
+            className="hover:text-indigo-500 transition-colors">
+            <Globe size={22} />
+          </a>
+        </div>
+
+        <p className="text-[10px] uppercase tracking-[0.3em] px-6 leading-loose">
+          Разработано и построено <span className="text-white">Sultan</span>{" "}
+          <span className="mx-2 text-indigo-500">|</span> 2026
+        </p>
+      </footer>
     </div>
   );
 };
@@ -263,3 +406,173 @@ export default App;
 
 --- FILE: src/index.css ---
 @import "tailwindcss";
+
+/* 1. Делаем фон всей страницы черным на уровне браузера */
+html,
+body {
+  background-color: #050505; /* Тот же цвет, что в App.tsx */
+  margin: 0;
+  padding: 0;
+  /* Убираем лишние отступы, которые могут давать белые полосы */
+  min-height: 100%;
+}
+
+/* 2. Плавный скролл по якорям (когда жмешь на Work или Stack) */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 3. Отключаем горизонтальный скролл, если что-то вылезет за край */
+body {
+  overflow-x: hidden;
+}
+
+
+--- FILE: src/components/ProjectCard.tsx ---
+import { ArrowUpRight } from "lucide-react";
+import { motion, useMotionValue } from "framer-motion";
+
+interface ProjectProps {
+  title: string;
+  description: string;
+  tags: string[];
+  link?: string;
+  category: string;
+}
+
+const ProjectCard: React.FC<ProjectProps> = ({
+  title,
+  description,
+  tags,
+  link = "#",
+  category,
+}) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function onMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseMove={onMouseMove}
+      className="group relative block bg-[#0A0A0A] border border-white/10 rounded-3xl p-8 md:p-10 overflow-hidden h-full flex flex-col transition-colors hover:border-indigo-500/50">
+      {/* Свечение теперь фиолетовое */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition duration-300"
+        style={{
+          background: `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(99, 102, 241, 0.15), transparent 40%)`,
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="flex justify-between items-start mb-6">
+          <span className="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-[10px] font-bold uppercase tracking-widest border border-indigo-500/20">
+            {category}
+          </span>
+          <div className="text-slate-500 group-hover:text-white group-hover:rotate-45 transition-all duration-300">
+            <ArrowUpRight size={20} />
+          </div>
+        </div>
+
+        <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-indigo-400 transition-colors duration-300">
+          {title}
+        </h3>
+
+        <p className="text-slate-400 mb-8 leading-relaxed flex-grow">
+          {description}
+        </p>
+
+        <div className="mt-auto">
+          <ul className="flex flex-wrap gap-2">
+            {tags.map((tech) => (
+              <li
+                key={tech}
+                className="text-[10px] font-mono border border-white/10 bg-white/5 px-2 py-1 rounded text-slate-500 group-hover:text-indigo-300 group-hover:border-indigo-500/30 transition-colors">
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </a>
+  );
+};
+
+export default ProjectCard;
+
+
+--- FILE: src/components/SocialSidebar.tsx ---
+import React from "react";
+import { Github, Linkedin, Instagram, Send } from "lucide-react";
+import { motion } from "framer-motion";
+
+const SocialSidebar = () => {
+  const socials = [
+    { Icon: Github, href: "https://github.com/su1tik" },
+    {
+      Icon: Linkedin,
+      href: "https://www.linkedin.com/in/sultan-auken-034316342/",
+    },
+    { Icon: Instagram, href: "https://www.instagram.com/sula.profile/" },
+    { Icon: Send, href: "http://t.me/suullaaaa" },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1, duration: 0.5 }}
+      // Скрыто на мобилках (hidden), появляется на больших экранах (lg:flex)
+      className="fixed bottom-0 left-6 xl:left-12 z-50 hidden lg:flex flex-col items-center gap-6">
+      <div className="flex flex-col gap-6">
+        {socials.map(({ Icon, href }, i) => (
+          <a
+            key={i}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`text-slate-500 hover:text-indigo-400 hover:-translate-y-1 transition-all duration-300 ${Icon === Send ? "rotate-[-20deg] hover:rotate-0" : ""}`}>
+            <Icon size={20} />
+          </a>
+        ))}
+      </div>
+      {/* Вертикальная линия как у Бриттани */}
+      <div className="w-[1px] h-24 bg-slate-800" />
+    </motion.div>
+  );
+};
+
+export default SocialSidebar;
+
+
+--- FILE: src/components/EmailSidebar.tsx ---
+import React from "react";
+import { motion } from "framer-motion";
+
+const EmailSidebar = () => {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1, duration: 0.5 }}
+      className="fixed bottom-0 right-6 xl:right-12 z-50 hidden lg:flex flex-col items-center gap-6">
+      <div className="[writing-mode:vertical-rl] mb-6">
+        <a
+          href="mailto:su1tangithub@gmail.com"
+          className="text-slate-500 font-mono text-sm tracking-widest hover:text-indigo-400 hover:-translate-y-1 transition-all duration-300">
+          su1tangithub@gmail.com
+        </a>
+      </div>
+      <div className="w-[1px] h-24 bg-slate-800" />
+    </motion.div>
+  );
+};
+
+export default EmailSidebar;
