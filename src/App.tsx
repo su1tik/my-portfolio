@@ -205,7 +205,7 @@ const App = () => {
             category="AI / Business Integration"
             description="Сложная система перевода для энтерпрайз сегмента с поддержкой контекста. Экономит до 70% бюджета на локализацию."
             tags={["React", "TS", "GPT-4"]}
-            link="#"
+            link="https://ai-menu-translator.vercel.app/"
           />
         </section>
 
