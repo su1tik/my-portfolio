@@ -4,10 +4,13 @@ import { motion } from "framer-motion";
 
 const SocialSidebar = () => {
   const socials = [
-    { Icon: Github, href: "https://github.com/your-username" },
-    { Icon: Linkedin, href: "https://linkedin.com/in/your-username" },
-    { Icon: Instagram, href: "https://instagram.com/your-username" },
-    { Icon: Send, href: "https://t.me/your_telegram_username" },
+    { Icon: Github, href: "https://github.com/su1tik" },
+    {
+      Icon: Linkedin,
+      href: "https://www.linkedin.com/in/sultan-auken-034316342/",
+    },
+    { Icon: Instagram, href: "https://www.instagram.com/sula.profile/" },
+    { Icon: Send, href: "http://t.me/suullaaaa" },
   ];
 
   return (
