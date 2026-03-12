@@ -201,10 +201,20 @@ const App = () => {
             <div className="h-[1px] w-full bg-slate-800" />
           </div>
           <ProjectCard
-            title="Neural Translator Pro"
+            title="KAMI AI: Интеллектуальная система локализации для HoReCa"
             category="AI / Business Integration"
-            description="Сложная система перевода для энтерпрайз сегмента с поддержкой контекста. Экономит до 70% бюджета на локализацию."
-            tags={["React", "TS", "GPT-4"]}
+            description="Высокопроизводительный сервис на базе AI для мгновенного перевода ресторанных меню на 15+ языков. <br>
+            Система учитывает профессиональный кулинарный контекст и использует кастомные глоссарии для обеспечения 100% точности терминологии."
+            tags={[
+              "React",
+              "Vite",
+              "CSS3",
+              "LocalStorage API",
+              "Node.js",
+              "Google Gemini API",
+              "XLSX",
+              "Mammoth.js",
+            ]}
             link="https://ai-menu-translator.vercel.app/"
           />
         </section>
