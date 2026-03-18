@@ -69,6 +69,22 @@ const PROJECTS = [
     ],
     link: "https://web-terminal-linux.vercel.app/",
   },
+  {
+    title:
+      "Lumina Finance: Интеллектуальная экосистема управления личным капиталом",
+    category: "FINTECH ORCHESTRATOR / PREMIUM UI",
+    description:
+      "Премиальный финансовый оркестратор, ориентированный на глубокую аналитику и визуализацию бюджета в реальном времени. Приложение построено на базе Bento-grid архитектуры с использованием Linear-style дизайна. Lumina Finance автоматически рассчитывает свободный денежный поток (FCF), определяет безопасный дневной лимит трат и строит интеллектуальные прогнозы для достижения финансовых целей. Особое внимание уделено микро-взаимодействиям: интерактивному свечению (Glow effect), анимированным счетчикам и плавным переходам слоев (Layout animations).",
+    tags: [
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "Lucide React",
+      "LocalStorage API",
+    ],
+    link: "https://lumina-finance-sula.vercel.app/",
+  },
 ];
 
 const App = () => {
