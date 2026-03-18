@@ -141,7 +141,7 @@ const App = () => {
           <motion.p
             initial={{ y: 10, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="font-mono text-indigo-500 mb-5 text-sm uppercase tracking-[0.3em]">
+            className="font-mono text-indigo-500 mb-5 text-base uppercase tracking-[0.3em]">
             Привет, меня зовут
           </motion.p>
           <motion.h1
