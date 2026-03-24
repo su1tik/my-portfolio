@@ -127,7 +127,7 @@ const App = () => {
             <span className="text-indigo-500">03.</span> Experience
           </a>
           <a
-            href="https://drive.google.com/file/d/1WAZdd5zLGU7PHSDSctcEB740DwuCrAuo/view?usp=sharing"
+            href="https://drive.google.com/file/d/14od2Mm7gNewOv2cSg9TfHnlq25tTC3Tv/view?usp=sharing"
             target="_blank"
             className="border border-indigo-500 px-4 py-2 text-indigo-400 hover:bg-indigo-500/10 transition-all rounded leading-none flex items-center h-full">
             Resume
