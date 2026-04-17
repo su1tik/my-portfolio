@@ -14,23 +14,25 @@ import EmailSidebar from "./components/EmailSidebar";
 
 const EXPERIENCE = [
   {
-    company: "AI Startup / Freelance",
-    role: "Middle Frontend Developer",
-    period: "2023 — Наст. время",
+    company: "KAMI GROUP (КАМИ ГРУПП)",
+    role: "Frontend-разработчик (React / AI Integration)",
+    period: "Май 2025 — Апрель 2026",
     tasks: [
-      "Разработка интерфейсов для управления LLM-агентами на React и TypeScript.",
-      "Оптимизация производительности приложений в Linux-среде (Arch Linux).",
-      "Интеграция API нейросетей (OpenAI, DeepL) для автоматизации бизнес-логики.",
+      "Разработка архитектуры AI-продукта на базе Gemini API, что позволило автоматизировать перевод специфических данных и ускорить работу отдела контента на 40%.",
+      "Реализация системы парсинга сложных документов (XLSX, DOCX) через SheetJS и Mammoth.js для прямой передачи данных в LLM, исключив человеческий фактор.",
+      "Внедрение технологии потоковой выдачи ответов (Streaming API), что значительно повысило Perceived Performance и Retention пользователей.",
+      "Проектирование гибридной архитектуры с выносом критической логики в Serverless Functions (Node.js) для обеспечения безопасности API-ключей.",
     ],
   },
   {
-    company: "Tech Development KZ",
-    role: "Frontend Developer",
-    period: "2021 — 2023",
+    company: "SkyLine Digital",
+    role: "Frontend-разработчик (Architecture & Performance)",
+    period: "Май 2024 — Май 2025",
     tasks: [
-      "Создание масштабируемых UI-компонентов для ERP-систем.",
-      "Настройка CI/CD процессов и автоматизация сборки фронтенда.",
-      "Рефакторинг кода и переход на современный стек (Vite + Tailwind).",
+      "Проектирование высокопроизводительного Web-CLI интерфейса (Terminal) с управлением состоянием через Zustand для мониторинга логов серверов.",
+      "Успешная миграция крупных систем с Webpack на Vite, что ускорило горячую перезагрузку (HMR) в 10 раз и сократило время CI/CD пайплайнов на 25%.",
+      "Разработка масштабируемого Theme Engine на SCSS и CSS Variables для динамической кастомизации под корпоративные стандарты (white-labeling).",
+      "Интеграция автоматических «ворот качества» (Quality Gates) в GitLab CI, сократившая время проведения Code Review на 15%.",
     ],
   },
 ];
@@ -280,31 +282,37 @@ const App = () => {
             <div className="h-[1px] w-full bg-slate-800" />
           </div>
 
-          <div className="space-y-12">
+          <div className="space-y-16">
             {EXPERIENCE.map((job, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group">
-                <h3 className="text-xl font-bold text-white mb-1">
-                  {job.role}{" "}
-                  <span className="text-indigo-400 font-medium">
-                    @ {job.company}
-                  </span>
-                </h3>
-                <p className="font-mono text-xs text-slate-600 mb-4 uppercase tracking-[0.2em]">
-                  {job.period}
-                </p>
-                <ul className="space-y-2">
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative">
+                {/* Вертикальная декоративная линия слева от опыта */}
+                <div className="absolute -left-4 top-0 bottom-0 w-[2px] bg-slate-900 group-hover:bg-indigo-500/50 transition-colors" />
+
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                  <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                    {job.role}{" "}
+                    <span className="text-indigo-500">@ {job.company}</span>
+                  </h3>
+                  <p className="font-mono text-xs text-slate-500 uppercase tracking-widest mt-2 md:mt-0">
+                    {job.period}
+                  </p>
+                </div>
+
+                <ul className="space-y-4">
                   {job.tasks.map((task, j) => (
                     <li
                       key={j}
-                      className="flex items-start gap-3 text-slate-400 text-sm leading-relaxed">
-                      <span className="text-indigo-500 mt-1">▹</span>
-                      {task}
+                      className="flex items-start gap-3 text-slate-400 text-base leading-relaxed">
+                      <span className="text-indigo-500 mt-1.5 text-[10px] shrink-0">
+                        ▹
+                      </span>
+                      <span>{task}</span>
                     </li>
                   ))}
                 </ul>
